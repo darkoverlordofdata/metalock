@@ -1,0 +1,124 @@
+metalock - enhanced X11 screen locker
+=================================
+A simple, yet flexible screen locker utility for X.
+
+Features
+--------
+
+  - Support for pixmap (image) xpm background and login box.
+
+  - It gives visual feedback as you type the password (Shows username and * for
+  each character of password typed.)
+
+  - Bind arbitrary commands to key combinations (allows tasks such as
+  pause/un-pause music without unlocking the screen)
+
+  - Optional XFT support for anti-aliased fonts.  (This is optional in case
+  greater security is desired)
+
+  - Optional Imlib2 support for use of png or jpg formats, which are more
+  appropriate for photos or high-color images than xpm.
+
+  - Portable to most UNIX-like operating systems, developed on FreeBSD.
+
+Requirements
+------------
+
+In order to build metalock you need the following:
+
+Compile time dependencies:
+
+  - A C compiler.  Both clang and gcc have been tested.
+
+  - BSD Make.  Both the portable NetBSD make and FreeBSD make should work.
+  Unfortunately, GNU make does not work.  If you are using Linux, please see
+  "Installation" for some workarounds.
+
+Run time dependencies:
+
+  - X11 library and header files.  (specifically Xlib, xpm)
+
+  - Xft library is optional, but recommended.  You can omit it if you want
+  metalock to be more secure, or if you prefer the appearance of the old style
+  fonts.  For most people, Xft is suggested.
+
+  - ultragetopt library is optional, but recommended.  (If ultragetopt is not
+  used, then you must have a system getopt installed)
+
+  - Imlib2 is optional.  It generally offers better performance over native
+  libxpm loading code, especially for large, high color images or photos.
+
+    Png or jpg files, and hence Imlib2, should be preferred if your image
+  has a lot of colors, since it will load orders of magnitude faster than an
+  xpm file.
+
+    However, recent improvements in the order of xpm loading substantially
+  improved performance over the old code, such that Imlib2 is no longer
+  necessary if your image does not have a lot of colors.
+
+    Since it is a very large library compared to Xpm, it is more likely to
+  contain potential security problems than any of the Xlib libraries, which are
+  small in comparison.
+
+Installation
+------------
+
+1) Determine if you have the proper libraries installed.
+
+2) Either edit config.mk to match your local setup, or define the variables
+explicitly on the make invocation.
+
+If you are using Linux, you have two options as far as make is concerned:
+
+  a) Use NetBSD make "bmake", which has a package for most Linux distributions.
+
+  b) Otherwise, if you want to use GNU make, you need to comment out the line
+  that includes the theme metadata.mk, and explicitly define the variables in
+  that file as the arguments to GNU make.
+
+    Most likely, there will be some other incompatibilities in the Makefile.
+  (such as the conditional statements).  Although b) is not officially
+  supported, most differences should be easy to patch.
+
+Set the PREFIX variable to the namespace of your operating system.  On most
+BSDs that is /usr/local (the default in config.mk), and on Linux, you should
+set it to /usr.
+
+Set the variable CC to either clang (default) or gcc.
+
+3) Make sure that the themes path exists, and contains the default theme.
+
+If you are not building from the fossil repository, then you will need to add a
+theme to the themes directory, as follows:
+
+  1) Download desired theme tarball
+
+  2) Copy theme tarball file to themes/
+
+  3) Extract theme tarball
+
+  4) Delete theme tarball
+
+4) Enter the following command to build and install metalock (typically as
+root):
+
+# cd src/
+
+# make clean install
+
+Running metalock
+----------------
+
+Simply invoke the 'metalock' command. To get out of it, enter your password.
+
+If you want help regarding the different command-line options, type:
+
+> metalock -h
+
+OR
+
+> metalock --help
+
+To get information about your version of metalock, type:
+
+> metalock -V -v 2
