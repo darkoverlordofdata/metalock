@@ -2,7 +2,7 @@
 # © 2012 Timothy Beyer
 # © 2006-2007 Anselm R. Garbe, Sander van Dijk
 
-include config.mk
+include BSDconfig.mk
 .include "../themes/${DEFAULT_THEME}/metadata.mk"
 
 .if ${USE_ULTRAGETOPT} == "yes"
@@ -82,7 +82,7 @@ options:
 	@echo CC $<
 	@${CC} -c ${CFLAGS} $<
 
-${OBJ}: config.mk
+${OBJ}: BSDconfig.mk
 
 prebuild:
 	@echo building metalock

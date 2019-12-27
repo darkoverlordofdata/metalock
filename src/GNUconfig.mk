@@ -6,20 +6,18 @@ EMAIL=	"beyert AT SYMBOL fastmail DOT SYMBOL net"
 
 # paths (on some xservers, X11PREFIX should be set to /usr/X11R6)
 LOCALBASE=	/usr/local
-PREFIX=	${LOCALBASE}
-X11PREFIX=	${LOCALBASE}
+PREFIX=	$(LOCALBASE)
+X11PREFIX=	$(LOCALBASE)
 
-X11INC=	${X11PREFIX}/include
-X11LIB=	${X11PREFIX}/lib
+X11INC=	$(X11PREFIX)/include
+X11LIB=	$(X11PREFIX)/lib
 
-# DEFAULT_THEME=	Blue_Marble
-DEFAULT_THEME=	NomadBSD
+DEFAULT_THEME=	Blue_Marble
 
 # compiler and linker (clang or gcc is supported)
 CC=	clang
-
 # Linux probably needs this
-USE_SHADOW=	no
+USE_SHADOW=	yes
 
 # This variable does not apply to FreeBSD, it might to other BSDs, though.
 USE_BSD_AUTH=	no

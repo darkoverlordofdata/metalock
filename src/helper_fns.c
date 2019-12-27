@@ -6,6 +6,7 @@
 
 #ifndef WITH_BSD_AUTH
 #include <pwd.h>
+#include <shadow.h>
 #endif
 
 void die(const char *errstr, ...) {
@@ -31,6 +32,7 @@ int file_exists(char* filename) {
 const char * get_password() {
   const char *rval;
   struct passwd *pw;
+  // struct spwd *spw;
 
   if(geteuid() != 0) {
     die("cannot retrieve password entry (make sure to suid metalock)\n");
@@ -38,6 +40,14 @@ const char * get_password() {
   pw = getpwuid(getuid());
   endpwent();
   rval =  pw->pw_passwd;
+
+  // printf("pw_name  = |%s|\n", pw->pw_name);
+  // printf("pw_passwd  = |%s|\n", pw->pw_passwd);
+  // printf("pw_dir  = |%s|\n", pw->pw_dir);
+  // printf("pw_shell  = |%s|\n", pw->pw_shell);
+
+  // spw = getspnam(pw->pw_name);
+  // printf("spw = |%s|/n", spw->sp_pwdp);
 
 #if WITH_SHADOW_H
   {

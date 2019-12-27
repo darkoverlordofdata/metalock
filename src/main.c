@@ -156,7 +156,7 @@ int main(int argc, char **argv) {
 #ifdef WITH_IMLIB2
   if (*imgfn == '\0' || file_exists(imgfn) < 0)
     image_filename(theme_name, "bg", "png", imgfn);
-  if (*imgfn == '\0' || file_exists(imgfn) < 0)
+  if (*imgfn == '\0' || file_exists(imgfn) < 0) 
     image_filename(theme_name, "bg", "jpg", imgfn);
   if (*imgfn == '\0' || file_exists(imgfn) < 0)
     image_filename(theme_name, "bg", "jpeg", imgfn);
@@ -170,8 +170,8 @@ int main(int argc, char **argv) {
     printf("background image filename: %s\n", imgfn);
 
 #ifdef WITH_IMLIB2
-  if (*boximgfn == '\0' || file_exists(boximgfn) < 0)
-    image_filename(theme_name, "box", "png", boximgfn);
+  if (*boximgfn == '\0' || file_exists(boximgfn) < 0) 
+      image_filename(theme_name, "box", "png", boximgfn);
   if (*boximgfn == '\0' || file_exists(boximgfn) < 0)
     image_filename(theme_name, "box", "jpg", boximgfn);
   if (*boximgfn == '\0' || file_exists(boximgfn) < 0)
@@ -209,7 +209,7 @@ int main(int argc, char **argv) {
 #endif
   }
   else if (flat_color_only == 0)
-    printf("image %s does not exist\n", imgfn);
+    printf("(image %s does not exist\n", imgfn);
 
   if(flat_color_only != 1 && file_exists(boximgfn) >= 0) {
 #ifdef WITH_IMLIB2
